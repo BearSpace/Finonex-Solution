@@ -6,12 +6,12 @@ namespace Finonex.Automation.Project.Core;
 public static class ConfigurationManager
 {
     private const string ErrorMessage = "{0} is an invalid URL";
-    private static string? Protocol { get; set; }
-    private static string? Url { get; set; }
-    private static string? Port { get; set; }
-    public static string? FullUrl { get; private set; }
+    private static string Protocol { get; set; } = null!;
+    private static string Url { get; set; } = null!;
+    private static string Port { get; set; } = null!;
+    public static string FullUrl { get; private set; } = null!;
 
-    public static string BrowserType { get; private set; }
+    public static string BrowserType { get; private set; } = null!;
 
     public static void CreateConfigurationContext()
     {
@@ -38,7 +38,6 @@ public static class ConfigurationManager
     private static string BuildUrl(string protocol, string url, int port)
     {
         url = string.Concat(protocol, "://", url, ":", port);
-
         if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
         {
             var uri = new Uri(url);
